@@ -113,3 +113,50 @@ pre {
 .copy-btn:active {
     transform: translateY(1px);
 }
+
+/* Lista de letras com parêntese */
+ol.exercicios {
+    list-style: none; /* remove numeração padrão */
+    counter-reset: exercicio; /* inicia contador */
+    padding-left: 0;
+}
+ol.exercicios > li {
+    counter-increment: exercicio;
+    margin-bottom: 10px;
+}
+ol.exercicios > li::before {
+    content: counter(exercicio) ". "; /* mostra 1., 2., 3... */
+    font-weight: bold;
+}
+
+/* Lista das alternativas */
+ol.alpha {
+    list-style: none; /* remove numeração padrão */
+    counter-reset: letra; /* inicia contador de letras */
+    padding-left: 20px;
+}
+ol.alpha > li::before {
+    counter-increment: letra;
+    content: counter(letra, lower-alpha) ") "; /* mostra a), b), c)... */
+}
+
+.nav-footer {
+    position: absolute;
+    bottom: 35px;
+    left: 15px;
+    right: 15px;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-footer a {
+    color: var(--nav-text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-footer a:hover {
+    text-decoration: underline;
+}
