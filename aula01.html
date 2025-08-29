@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Apostila Octave — Aula 01</title>
 
-        <!-- Prism for syntax highlighting -->
+        <!-- Prism para syntax highlighting -->
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
             rel="stylesheet"
@@ -12,12 +12,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-matlab.min.js"></script>
 
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        <!-- MathJax v3 -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [
+                        ["$", "$"],
+                        ["\\(", "\\)"],
+                    ],
+                    displayMath: [
+                        ["$$", "$$"],
+                        ["\\[", "\\]"],
+                    ],
+                },
+            };
         </script>
         <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+            async
         ></script>
 
         <link rel="stylesheet" href="estilos.css" />
