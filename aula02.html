@@ -89,6 +89,41 @@
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">pkg load symbolic;
 syms x y;
 expr = x^2 + 3*x*y + y^2 </code></pre>
+
+                <h3>Funções Úteis em Variáveis Simbólicas</h3>
+
+                <h3>eval</h3>
+                <p>
+                    A função <code>eval</code> avalia uma expressão simbólica em
+                    um valor numérico. É útil quando já temos a expressão
+                    simbólica resolvida e queremos obter o resultado numérico
+                    substituindo valores.
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x
+f = sin(x)^2 + cos(x)^2;
+resultado = eval(subs(f, x, pi/4)) </code></pre>
+
+                <h3>subs</h3>
+                <p>
+                    A função <code>subs</code> substitui uma variável simbólica
+                    por um valor ou por outra expressão. É essencial para testar
+                    expressões em pontos específicos ou realizar mudanças de
+                    variáveis.
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x y
+f = x^2 + y;
+g = subs(f, x, 3)       % substitui x por 3
+h = subs(f, [x y], [2 5]) % substitui x=2 e y=5 </code></pre>
+
+                <h3>simplify</h3>
+                <p>
+                    A função <code>simplify</code> tenta reduzir uma expressão
+                    simbólica à sua forma mais simples. É muito usada após
+                    derivadas, integrais ou manipulações algébricas.
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x
+expr = (x^2 - 1)/(x - 1);
+simplificado = simplify(expr) </code></pre>
             </section>
 
             <!-- Equações algébricas -->
