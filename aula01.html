@@ -17,7 +17,7 @@
         </script>
         <script
             type="text/javascript"
-            src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
         ></script>
 
         <link rel="stylesheet" href="estilos.css" />
@@ -50,8 +50,9 @@
                     <a href="#expressoes">6. Expressões, Funções e Comandos</a>
                 </li>
                 <li><a href="#vetores">7. Vetores e Matrizes</a></li>
-                <li><a href="#polinomios">8. Polinômios</a></li>
-                <li><a href="#exercicios">9. Exercicios para fixação</a></li>
+                <li><a href="#algebra-linear">8. Álgebra Linear</a></li>
+                <li><a href="#polinomios">9. Polinômios</a></li>
+                <li><a href="#exercicios">10. Exercicios para fixação</a></li>
             </ul>
 
             <!-- Rodapé da barra lateral -->
@@ -292,7 +293,7 @@ z2 = -1 + 4i;
 z3 = z1 + z2;           % soma
 z4 = z1 * z2;           % multiplicação
 z5 = z1 / z2;           % divisão
-z6 = z1^2;              % potência</code> </pre>
+z6 = z1^2;              % potência</code></pre>
 
                 <p>
                     <strong>Exemplo:</strong> Cálculo do módulo e da fase de
@@ -441,7 +442,7 @@ grid on             % ativa a grade no gráfico </code></pre>
                 </ul>
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">saveas(gcf, 'grafico1.png')
 %ou
-print -dpng 'grafico2.png' </code> </pre>
+print -dpng 'grafico2.png' </code></pre>
 
                 <p>
                     No Octave, as janelas gráficas abertas (plots) podem ser
@@ -455,7 +456,7 @@ print -dpng 'grafico2.png' </code> </pre>
                 </h2>
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">a = 5;
 b = sqrt(a);   % raiz quadrada
-c = log(a);    % logaritmo natural </code> </pre>
+c = log(a);    % logaritmo natural </code></pre>
                 <h3>Comandos úteis</h3>
                 <p>
                     Confira alguns comandos nativos básicos muito usados no
@@ -496,12 +497,22 @@ v1 + 2      % soma 2 a cada elemento
 v1 .* v1    % multiplicação elemento a elemento
 v1 .* v2'   % multiplicação elemento a elemento (v2' é transposto)
 v1 * v2     % produto escalar (resulta em número)
-length(v1)  % comprimento do vetor (4) </code> </pre>
+length(v1)  % comprimento do vetor (4) </code></pre>
 
                 <h3>Matrizes</h3>
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Criação de matrizes
 A = [1 0 1; -2 1 0; 1 2 2];
 B = [1 1 1; -1 5 4; 0 2 1];
+
+% Matrizes especiais
+C = eye(3); % Elemento neutro da multiplicação de matrizes 3x3
+C1 = eye(3,4);
+D = ones(3);
+D1 = ones(3,4);
+E = zeros(3); % Elemento neutro da adição de matrizes 3x3
+E1 = zeros(3,4);
+R = rand(3); % Matriz 3x3 com valores aleatórios entre 0 e 1
+R1 = rand(2,3); % Matriz 2x3 com valores aleatórios entre 0 e 1
 
 % Operações com matrizes
 A + B       % soma elemento a elemento
@@ -516,7 +527,7 @@ size(A)     % tamanho da matriz (linhas x colunas)
 A(1, :)     % 1ª linha inteira
 A(:, 2)     % 2ª coluna inteira
 A(2, 3)     % elemento da 2ª linha, 3ª coluna
-A(3, :) = [] % remove a 3ª linha </code> </pre>
+A(3, :) = [] % remove a 3ª linha </code></pre>
 
                 <p>
                     <strong>Dica:</strong> Vetores são matrizes com uma única
@@ -526,8 +537,121 @@ A(3, :) = [] % remove a 3ª linha </code> </pre>
                 </p>
             </section>
 
+            <section id="algebra-linear">
+                <h2 class="section-title">8. Álgebra Linear</h2>
+
+                <h3>🔢 Determinante</h3>
+                <p>
+                    O determinante é um número associado a uma matriz quadrada.
+                    No Octave:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Definição da matriz
+A = [2 -1 3; 0 4 5; 7 8 -6];
+
+% Determinante
+d = det(A);
+disp(['Determinante = ', num2str(d)]);</code></pre>
+
+                <h3>📐 Autovalores e Autovetores</h3>
+                <p>
+                    Autovalores (ou valores próprios) e autovetores são
+                    fundamentais em análise de sistemas, estabilidade e
+                    decomposição de matrizes.
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Autovalores e autovetores
+[V, D] = eig(A);
+
+% D é uma matriz diagonal com autovalores
+% V contém os autovetores correspondentes (colunas)
+disp('Autovalores:');
+disp(diag(D));
+disp('Autovetores (colunas de V):');
+disp(V);</code></pre>
+
+                <h3>⚡ Exemplo prático</h3>
+                <p>
+                    Considere a matriz $B = \begin{bmatrix}4 & 2\\ 1 &
+                    3\end{bmatrix}$:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">B = [4 2; 1 3];
+[V, D] = eig(B);
+
+% Saída
+disp('Autovalores de B:');
+disp(diag(D));
+disp('Autovetores de B:');
+disp(V);</code></pre>
+
+                <p>
+                    Nesse caso, cada autovalor em <code>D</code> está associado
+                    ao vetor correspondente em <code>V</code>. Isso é útil, por
+                    exemplo, em diagonalização e em métodos numéricos para
+                    resolver sistemas dinâmicos.
+                </p>
+
+                <h3>📊 Visualização</h3>
+                <p>
+                    Podemos até visualizar o efeito de uma matriz sobre vetores
+                    no plano:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Visualização simples
+B = [4 2; 1 3];
+[V, D] = eig(B);
+
+quiver(0,0,V(1,1),V(2,1), 'r','LineWidth',2);
+hold on;
+quiver(0,0,V(1,2),V(2,2), 'b','LineWidth',2);
+axis equal; grid on;
+title('Autovetores de B');
+legend('Autovetor 1','Autovetor 2');</code></pre>
+
+
+
+
+<h3>Solução de Sistemas Lineares</h3>
+  <p>
+    Um sistema linear pode ser escrito na forma matricial:
+  </p>
+
+  $$
+  A x = b
+  $$
+
+  <p>
+    onde:
+    <ul>
+      <li>$A$ é a matriz dos coeficientes</li>
+      <li>$x$ é o vetor de incógnitas</li>
+      <li>$b$ é o vetor de termos independentes</li>
+    </ul>
+  </p>
+
+  <p><strong>Exemplo:</strong></p>
+  <p>Considere o sistema:</p>
+
+  $$
+  \begin{cases}
+  2x + y = 5 \\
+  x - y = 1
+  \end{cases}
+  $$
+
+  <p>Em Octave, podemos resolver assim:</p>
+
+<pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">A = [2 1; 1 -1];   % matriz de coeficientes
+b = [5; 1];        % vetor de termos independentes
+x = A \ b          % solução do sistema</code></pre>
+
+  <p>
+    O operador <code>\</code> calcula a solução de forma eficiente, equivalente a
+    $x = A^{-1}b$, mas sem precisar calcular a inversa explicitamente.
+  </p>
+
+
+            </section>
+
             <section id="polinomios">
-                <h2 class="section-title">8. Polinômios</h2>
+                <h2 class="section-title">9. Polinômios</h2>
 
                 <h3>Definição por coeficientes</h3>
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Definição do polinômio p(x) = x² - 3x + 2
@@ -536,21 +660,21 @@ p = [1 -3 2];
 % Encontrar as raízes do polinômio
 r = roots(p);
 disp('Raízes do polinômio:');
-disp(r);</code> </pre>
-                <p>
-                    Os coeficientes do vetor <code>p</code> representam os
-                    termos do polinômio em ordem decrescente das potências de
-                    <code>x</code>.
-                </p>
+disp(r);</code></pre>
+    <p>
+        Os coeficientes do vetor <code>p</code> representam os
+        termos do polinômio em ordem decrescente das potências de
+        <code>x</code>.
+    </p>
 
-                <h3>Definição pelas raízes</h3>
-                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Definição do polinômio a partir das raízes r = 1 e r = 2
+    <h3>Definição pelas raízes</h3>
+    <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Definição do polinômio a partir das raízes r = 1 e r = 2
 r = [1 2];       
 
 % Coeficientes do polinômio resultante: (x - 1)(x - 2) = x² - 3x + 2
 p2 = poly(r);
 disp('Coeficientes do polinômio a partir das raízes:');
-disp(p2);</code> </pre>
+disp(p2);</code></pre>
                 <p>
                     A função <code>poly</code> cria o vetor de coeficientes a
                     partir das raízes dadas, facilitando a reconstrução do
@@ -561,7 +685,7 @@ disp(p2);</code> </pre>
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">% Avaliar o polinômio p no ponto x = 4
 x = 4;
 valor = polyval(p, x);
-fprintf('p(%d) = %.2f\n', x, valor); </code> </pre>
+fprintf('p(%d) = %.2f\n', x, valor); </code></pre>
                 <p>
                     <code>polyval</code> é usado para calcular o valor do
                     polinômio para um dado <code>x</code>, útil para plotar
@@ -628,7 +752,7 @@ xlabel('x');
 ylabel('p(x)');
 title('Gráfico do polinômio p(x) = x^2 - 3x + 2');
 legend('p(x)', 'Raízes');
-hold off; </code> </pre>
+hold off; </code></pre>
                 <p>
                     Este script mostra como avaliar um polinômio em vários
                     pontos para gerar um gráfico e também destaca as raízes com
@@ -637,7 +761,7 @@ hold off; </code> </pre>
             </section>
 
             <section id="exercicios">
-                <h2 class="section-title">9. Exercícios para fixação</h2>
+                <h2 class="section-title">10. Exercícios para fixação</h2>
 
                 <ol class="exercicios">
                     <li>
@@ -687,6 +811,44 @@ hold off; </code> </pre>
                                 transposta.
                             </li>
                         </ol>
+                    </li>
+
+                    <li>
+                        Calcule a <strong>determinante</strong> da matriz $
+                        B=\begin{bmatrix} 1 & 2 & 3\\ 0 & 1 & 4\\ 5 & 6 &
+                        0\end{bmatrix} $
+                    </li>
+
+                    <li>
+                        Verifique se a matriz $ C=\begin{bmatrix} 2 & 1 \\ 1 &
+                        2\end{bmatrix} $ é <strong>diagonalizável</strong>.
+                    </li>
+
+                    <li>
+                        Encontre os autovalores da matriz identidade 3x3 e
+                        explique o resultado.
+                    </li>
+
+                    <li>
+                        Considere a matriz de rotação de 90° no plano $
+                        R=\begin{bmatrix} 0 & -1\\ 1 & 0\end{bmatrix} $ e
+                        calcule seus autovalores e autovetores. O que você
+                        observa?
+                    </li>
+
+                    <li>
+                        Diagonalize a matriz, se possível: $ A=\begin{bmatrix} 4
+                        & 1 \\ 2 & 3\end{bmatrix} $
+                        <p>
+                            <em>Dica:</em> use <code>[V, D] = eig(A);</code> e
+                            depois verifique se $A=V\cdot D\cdot V^{-1}$.
+                        </p>
+                    </li>
+
+                    <li>
+                        Resolva o seguinte sistema linear $Ax=b$ para $A =
+                        \begin{bmatrix} 3 & 1 \\ 0 & 2 \end{bmatrix}$; $b =
+                        \begin{bmatrix} 5 \\ 4 \end{bmatrix}$.
                     </li>
                 </ol>
             </section>
