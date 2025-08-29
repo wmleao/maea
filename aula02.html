@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Apostila Octave — Aula 02</title>
 
-        <!-- Prism for syntax highlighting -->
+        <!-- Prism para syntax highlighting -->
         <link
             href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
             rel="stylesheet"
@@ -12,12 +12,24 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-matlab.min.js"></script>
 
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        <!-- MathJax v3 -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [
+                        ["$", "$"],
+                        ["\\(", "\\)"],
+                    ],
+                    displayMath: [
+                        ["$$", "$$"],
+                        ["\\[", "\\]"],
+                    ],
+                },
+            };
         </script>
         <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+            async
         ></script>
 
         <link rel="stylesheet" href="estilos.css" />
@@ -30,137 +42,146 @@
         <!-- Barra lateral -->
         <nav id="sidebar">
             <h2>📚 Seções</h2>
-            <ul>
+            <ol>
                 <li>
                     <a href="#variaveis_simbolicas"
-                        >1. Variáveis e Expressões Simbólicas</a
+                        >Variáveis e Expressões Simbólicas</a
                     >
                 </li>
+                <li><a href="#equacoes_algebricas">Equações Algébricas</a></li>
+                <li><a href="#derivadas">Derivadas</a></li>
+                <li><a href="#integrais">Integrais</a></li>
                 <li>
-                    <a href="#equacoes_algebricas">2. Equações Algébricas</a>
+                    <a href="#equacoes_diferenciais">Equações Diferenciais</a>
                 </li>
-                <li>
-                    <a href="#derivadas">3. Derivadas</a>
-                </li>
-                <li><a href="#integrais">4. Integrais</a></li>
-                <li>
-                    <a href="#equacoes_diferenciais"
-                        >5. Equações Diferenciais</a
-                    >
-                </li>
-                <li>
-                    <a href="#transformadas">6. Transformadas</a>
-                </li>
-                <li><a href="#exercicios">7. Exercicios para fixação</a></li>
-            </ul>
+                <li><a href="#transformadas">Transformadas</a></li>
+                <li><a href="#exercicios">Exercícios para fixação</a></li>
+            </ol>
 
-                <!-- Rodapé da barra lateral -->
-    <div class="nav-footer">
-                <a href="aula01.html">⬅️ Ir para a página anterior</a> <br>
+            <!-- Rodapé da barra lateral -->
+            <div class="nav-footer">
+                <a href="aula01.html">⬅️ Ir para a página anterior</a> <br />
                 <a href="aula03.html">➡️ Ir para a próxima página</a>
-    </div>
+            </div>
         </nav>
 
         <!-- Conteúdo -->
         <main id="content">
             <section id="variaveis_simbolicas">
+                <h2 class="section-title">
+                    1. Variáveis e Expressões Simbólicas
+                </h2>
+                <p>
+                    O Octave permite trabalhar com
+                    <strong>matemática simbólica</strong>, ou seja, expressões
+                    algébricas manipuladas de forma exata, sem arredondamentos
+                    numéricos. Para isso, é necessário carregar o pacote
+                    <code>symbolic</code>. Com ele podemos criar variáveis
+                    simbólicas (como <code>x</code> e <code>y</code>) e formar
+                    expressões que se comportam como polinômios e funções
+                    matemáticas.
+                </p>
 
-                    <h2 class="section-title">
-                        1. Variáveis e Expressões Simbólicas
-                    </h2>
-<p>
-    O Octave permite trabalhar com <strong>matemática simbólica</strong>, ou seja, expressões algébricas manipuladas de forma exata, sem arredondamentos numéricos.
-    Para isso, é necessário carregar o pacote <code>symbolic</code>. 
-    Com ele podemos criar variáveis simbólicas (como <code>x</code> e <code>y</code>)
-    e formar expressões que se comportam como polinômios e funções matemáticas.
-  </p>
-
-  <p><em>Exemplo:</em> Criando variáveis simbólicas e montando uma expressão:</p>               
- <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">pkg load symbolic;
+                <p>
+                    <em>Exemplo:</em> Criando variáveis simbólicas e montando
+                    uma expressão:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">pkg load symbolic;
 syms x y;
 expr = x^2 + 3*x*y + y^2 </code></pre>
-    </section>
-
-
-
-
-
+            </section>
 
             <!-- Equações algébricas -->
             <section id="equacoes_algebricas">
-                <h2 class="section-title" > 2. Equações Algébricas</h2>
-  <p>
-    Uma <strong>equação algébrica</strong> é uma igualdade que envolve polinômios ou expressões
-    simbólicas. Resolver uma equação significa encontrar os valores das variáveis que tornam a igualdade verdadeira.
-    No Octave usamos a função <code>solve</code> para esse processo.
-  </p>
+                <h2 class="section-title">2. Equações Algébricas</h2>
+                <p>
+                    Uma <strong>equação algébrica</strong> é uma igualdade que
+                    envolve polinômios ou expressões simbólicas. Resolver uma
+                    equação significa encontrar os valores das variáveis que
+                    tornam a igualdade verdadeira. No Octave usamos a função
+                    <code>solve</code> para esse processo.
+                </p>
 
-  <p><em>Exemplo:</em> Resolver uma equação quadrática do tipo $x^2 - 5x + 6 = 0$:</p>
-<pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x;
+                <p>
+                    <em>Exemplo:</em> Resolver uma equação quadrática do tipo
+                    $x^2 - 5x + 6 = 0$:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x;
 solve(x^2 - 5*x + 6 == 0, x)  </code></pre>
-    </section>
-
-
-
-
-
-
-
-
-
-
+            </section>
 
             <section id="derivadas">
                 <h2 class="section-title">3. Derivadas</h2>
 
-    A <strong>derivada</strong> representa a taxa de variação de uma função.
+                A <strong>derivada</strong> representa a taxa de variação de uma
+                função.
 
-<p><strong>Derivada ordinária:</strong></p>
-  <p>Representa a taxa de variação de uma função em relação a uma variável.</p>
-  <p>$$ \frac{dy}{dx} = \lim_{\Delta x \to 0} \frac{f(x+\Delta x) - f(x)}{\Delta x} $$</p>
+                <p><strong>Derivada ordinária:</strong></p>
+                <p>
+                    Representa a taxa de variação de uma função em relação a uma
+                    variável.
+                </p>
+                <p>
+                    $$ \frac{dy}{dx} = \lim_{\Delta x \to 0} \frac{f(x+\Delta x)
+                    - f(x)}{\Delta x} $$
+                </p>
 
-  <p><strong>Derivada parcial:</strong></p>
-  <p>É a derivada de uma função de várias variáveis em relação a apenas uma delas, mantendo as outras constantes.</p>
-  <p>$$ \frac{\partial f}{\partial x} $$</p>
+                <p><strong>Derivada parcial:</strong></p>
+                <p>
+                    É a derivada de uma função de várias variáveis em relação a
+                    apenas uma delas, mantendo as outras constantes.
+                </p>
+                <p>$$ \frac{\partial f}{\partial x} $$</p>
 
-  <p><strong>Gradiente:</strong></p>
-  <p>É o vetor que aponta na direção de maior crescimento de uma função escalar.</p>
-  <p>$$ \nabla f(x,y) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right) $$</p>
+                <p><strong>Gradiente:</strong></p>
+                <p>
+                    É o vetor que aponta na direção de maior crescimento de uma
+                    função escalar.
+                </p>
+                <p>
+                    $$ \nabla f(x,y) = \left( \frac{\partial f}{\partial x},
+                    \frac{\partial f}{\partial y} \right) $$
+                </p>
 
-  <p><strong>Jacobiano:</strong></p>
-  <p>É a matriz das derivadas parciais de um vetor de funções em relação a um vetor de variáveis.</p>
-  <p>$$ J = 
-  \begin{bmatrix}
-  \frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\
-  \vdots & \ddots & \vdots \\
-  \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n}
-  \end{bmatrix} $$</p>
+                <p><strong>Jacobiano:</strong></p>
+                <p>
+                    É a matriz das derivadas parciais de um vetor de funções em
+                    relação a um vetor de variáveis.
+                </p>
+                <p>
+                    $$ J = \begin{bmatrix} \frac{\partial f_1}{\partial x_1} &
+                    \cdots & \frac{\partial f_1}{\partial x_n} \\ \vdots &
+                    \ddots & \vdots \\ \frac{\partial f_m}{\partial x_1} &
+                    \cdots & \frac{\partial f_m}{\partial x_n} \end{bmatrix} $$
+                </p>
 
-  <p><strong>Hessiana:</strong></p>
-  <p>É a matriz das segundas derivadas de uma função escalar, útil na análise de máximos e mínimos.</p>
-  <p>$$ H(f) = 
-  \begin{bmatrix}
-  \frac{\partial^2 f}{\partial x^2} & \frac{\partial^2 f}{\partial x \partial y} \\
-  \frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2}
-  \end{bmatrix} $$</p>
+                <p><strong>Hessiana:</strong></p>
+                <p>
+                    É a matriz das segundas derivadas de uma função escalar,
+                    útil na análise de máximos e mínimos.
+                </p>
+                <p>
+                    $$ H(f) = \begin{bmatrix} \frac{\partial^2 f}{\partial x^2}
+                    & \frac{\partial^2 f}{\partial x \partial y} \\
+                    \frac{\partial^2 f}{\partial y \partial x} &
+                    \frac{\partial^2 f}{\partial y^2} \end{bmatrix} $$
+                </p>
 
+                <p>
+                    No Octave, usamos <code>diff</code> para derivadas simples
+                    ou parciais. Outras ferramentas simbólicas incluem:
+                </p>
+                <ul>
+                    <li><code>gradient</code>: calcula o vetor gradiente;</li>
+                    <li><code>jacobian</code>: calcula a matriz Jacobiana;</li>
+                    <li><code>hessian</code>: calcula a matriz Hessiana.</li>
+                </ul>
 
-
-
-
-
-
-    <p>No Octave, usamos <code>diff</code> para derivadas simples ou parciais.  
-    Outras ferramentas simbólicas incluem:
-  </p>
-  <ul>
-    <li><code>gradient</code>: calcula o vetor gradiente;</li>
-    <li><code>jacobian</code>: calcula a matriz Jacobiana;</li>
-    <li><code>hessian</code>: calcula a matriz Hessiana.</li>
-  </ul>
-
-    <p><em>Exemplo:</em> Trabalhando com derivadas de uma função simbólica:</p>
-<pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x y;
+                <p>
+                    <em>Exemplo:</em> Trabalhando com derivadas de uma função
+                    simbólica:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x y;
 f = x^2*y + sin(x);
 
 % Derivada em relação a x
@@ -177,50 +198,62 @@ jacobian([f, x*y], [x, y])
 
 % Hessiana
 hessian(f, [x, y]) </code></pre>
-    </section>
-
-
-
-
-
-
-
-
+            </section>
 
             <section id="integrais">
                 <h2 class="section-title">4. Integrais</h2>
-  A <strong>integração simbólica</strong> permite calcular áreas, volumes ou acumulações de grandezas. 
+                A <strong>integração simbólica</strong> permite calcular áreas,
+                volumes ou acumulações de grandezas.
 
-  <p><strong>Integral indefinida:</strong></p>
-  <p>É a operação inversa da derivada, resultando em uma família de funções.</p>
-  <p>$$ \int f(x)\,dx $$</p>
+                <p><strong>Integral indefinida:</strong></p>
+                <p>
+                    É a operação inversa da derivada, resultando em uma família
+                    de funções.
+                </p>
+                <p>$$ \int f(x)\,dx $$</p>
 
-  <p><strong>Integral definida:</strong></p>
-  <p>Representa a área sob a curva de uma função entre dois limites.</p>
-  <p>$$ \int_a^b f(x)\,dx $$</p>
+                <p><strong>Integral definida:</strong></p>
+                <p>
+                    Representa a área sob a curva de uma função entre dois
+                    limites.
+                </p>
+                <p>$$ \int_a^b f(x)\,dx $$</p>
 
-  <p><strong>Integral dupla:</strong></p>
-  <p>Usada em funções de duas variáveis, representando o volume sob uma superfície.</p>
-  <p>$$ \iint_D f(x,y)\,dx\,dy $$</p>
+                <p><strong>Integral dupla:</strong></p>
+                <p>
+                    Usada em funções de duas variáveis, representando o volume
+                    sob uma superfície.
+                </p>
+                <p>$$ \iint_D f(x,y)\,dx\,dy $$</p>
 
-  <p><strong>Integral tripla:</strong></p>
-  <p>Extensão para funções de três variáveis, calculando volumes em regiões do espaço.</p>
-  <p>$$ \iiint_V f(x,y,z)\,dx\,dy\,dz $$</p>
+                <p><strong>Integral tripla:</strong></p>
+                <p>
+                    Extensão para funções de três variáveis, calculando volumes
+                    em regiões do espaço.
+                </p>
+                <p>$$ \iiint_V f(x,y,z)\,dx\,dy\,dz $$</p>
 
-  <p><strong>Integral imprópria:</strong></p>
-  <p>Quando o intervalo é infinito ou a função tem descontinuidade.</p>
-  <p>$$ \int_1^{\infty} \frac{1}{x^2}\,dx $$</p>
+                <p><strong>Integral imprópria:</strong></p>
+                <p>
+                    Quando o intervalo é infinito ou a função tem
+                    descontinuidade.
+                </p>
+                <p>$$ \int_1^{\infty} \frac{1}{x^2}\,dx $$</p>
 
-    <p>No Octave usamos <code>int</code>, que pode ser usada de diferentes formas:
-  </p>
-  <ul>
-    <li>Indefinida: sem limites;</li>
-    <li>Definida: com limites de integração;</li>
-    <li>Múltiplas: dupla ou tripla, com variáveis diferentes.</li>
-  </ul>
+                <p>
+                    No Octave usamos <code>int</code>, que pode ser usada de
+                    diferentes formas:
+                </p>
+                <ul>
+                    <li>Indefinida: sem limites;</li>
+                    <li>Definida: com limites de integração;</li>
+                    <li>
+                        Múltiplas: dupla ou tripla, com variáveis diferentes.
+                    </li>
+                </ul>
 
-  <p><em>Exemplo:</em> Integrais simbólicas no Octave:</p>
-<pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x y;
+                <p><em>Exemplo:</em> Integrais simbólicas no Octave:</p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms x y;
 
 % Indefinida
 int(sin(x), x)
@@ -233,66 +266,68 @@ int(int(x*y, x, 0, 1), y, 0, 1)
 
 % Integral tripla
 int(int(int(x*y*z, x, 0, 1), y, 0, 1), z, 0, 1) </code></pre>
-    </section>
-
-
-
-
-
-
-
-
+            </section>
 
             <section id="equacoes_diferenciais">
-                <h2 class="section-title">
-                    5. Equações Diferenciais
-                </h2>
-  <p>
-    Uma <strong>equação diferencial</strong> relaciona uma função e suas derivadas.
-    O comando <code>dsolve</code> resolve simbolicamente EDOs simples ou sistemas diferenciais.
-  </p>
+                <h2 class="section-title">5. Equações Diferenciais</h2>
+                <p>
+                    Uma <strong>equação diferencial</strong> relaciona uma
+                    função e suas derivadas. O comando
+                    <code>dsolve</code> resolve simbolicamente EDOs simples ou
+                    sistemas diferenciais.
+                </p>
 
-  <p><em>Exemplo:</em> Resolver a EDO $y'(x) = y(x)$:</p>
+                <p><em>Exemplo:</em> Resolver a EDO $y'(x) = y(x)$:</p>
                 <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms y(x)
 ode = diff(y, x) == y;
 dsolve(ode) </code></pre>
-    </section>
-
-
-
-
-
+            </section>
 
             <section id="transformadas">
                 <h2 class="section-title">6. Transformadas</h2>
 
-        <se>
-    As <strong>transformadas</strong> são ferramentas que convertem funções do tempo em representações no
-    domínio da frequência ou em sequências discretas.
-    
-    <p><strong>Transformada de Laplace:</strong></p>
-  <p>Converte funções do tempo em funções no domínio da frequência, facilitando a resolução de EDOs.</p>
-  <p>$$ \mathcal{L}\{f(t)\} = \int_0^{\infty} f(t)e^{-st}\,dt $$</p>
+                As <strong>transformadas</strong> são ferramentas que convertem
+                funções do tempo em representações no domínio da frequência ou
+                em sequências discretas.
 
-  <p><strong>Transformada de Fourier:</strong></p>
-  <p>Representa uma função como a soma de senos e cossenos em diferentes frequências.</p>
-  <p>$$ \mathcal{F}\{f(t)\} = \int_{-\infty}^{\infty} f(t)e^{-i \omega t}\,dt $$</p>
+                <p><strong>Transformada de Laplace:</strong></p>
+                <p>
+                    Converte funções do tempo em funções no domínio da
+                    frequência, facilitando a resolução de EDOs.
+                </p>
+                <p>
+                    $$ \mathcal{L}\{f(t)\} = \int_0^{\infty} f(t)e^{-st}\,dt $$
+                </p>
 
+                <p><strong>Transformada de Fourier:</strong></p>
+                <p>
+                    Representa uma função como a soma de senos e cossenos em
+                    diferentes frequências.
+                </p>
+                <p>
+                    $$ \mathcal{F}\{f(t)\} = \int_{-\infty}^{\infty} f(t)e^{-i
+                    \omega t}\,dt $$
+                </p>
 
-  <p><strong>Transformada Z:</strong></p>
-  <p>É uma extensão discreta da transformada de Laplace, usada em sinais digitais.</p>
-  <p>$$ X(z) = \sum_{n=0}^{\infty} x[n] z^{-n} $$</p>
-    
-    <p>No Octave temos:
-  </p>
-  <ul>
-    <li><code>laplace</code>: Transformada de Laplace;</li>
-    <li><code>fourier</code>: Transformada de Fourier;</li>
-    <li><code>ztrans</code>: Transformada Z.</li>
-  </ul>
+                <p><strong>Transformada Z:</strong></p>
+                <p>
+                    É uma extensão discreta da transformada de Laplace, usada em
+                    sinais digitais.
+                </p>
+                <p>$$ X(z) = \sum_{n=0}^{\infty} x[n] z^{-n} $$</p>
 
-  <p><em>Exemplo:</em> Aplicando transformadas em funções conhecidas:</p>
-      <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms t s n w;
+                <p>No Octave temos:</p>
+                <ul>
+                    <li><code>laplace</code>: Transformada de Laplace;</li>
+                    <li><code>fourier</code>: Transformada de Fourier;</li>
+                    <li><code>ztrans</code>: Transformada Z.</li>
+                </ul>
+
+                <p>
+                    <em>Exemplo:</em> Aplicando transformadas em funções
+                    conhecidas:
+                </p>
+                <pre><button class="copy-btn" onclick="copiarCodigo(this)">📋 Copiar</button><code class="language-matlab">syms t s n w;
 f = exp(-2*t);
 
 % Transformada de Laplace
@@ -305,75 +340,91 @@ fourier(sin(t), t, w)
 syms n z;
 f = (1/2)^n;
 ztrans(f, n, z) </code></pre>
-</section>
+            </section>
 
+            <section id="exercicios">
+                <h2 class="section-title">7. Exercícios para fixação</h2>
 
+                <ol class="exercicios">
+                    <li>
+                        Crie variáveis simbólicas <code>x</code> e
+                        <code>y</code>, monte a expressão abaixo e simplifique-a
+                        usando comandos do Octave. $$ f(x,y) = x^2 + 2xy + y^2
+                        $$
+                    </li>
+                    <br />
+                    <li>
+                        Encontre a solução das equações abaixo e plot cada uma
+                        delas em um intervalo que se encontra a solução
+                        <ol class="alpha">
+                            <li>$ x^2 - 4x + 3 = 0 $</li>
+                            <li>$ \sin(x) = \frac{1}{2} x $</li>
+                            <li>$ e^x - 2x = 1 $</li>
+                        </ol>
+                    </li>
+                    <br />
+                    <li>
+                        Seja $ f(x,y) = x^2y + e^x \sin(y) $, utilize o Octave
+                        determinar:
+                        <ol class="alpha">
+                            <li>
+                                a derivada parcial em relação a <code>x</code>;
+                            </li>
+                            <li>
+                                a derivada parcial em relação a <code>y</code>;
+                            </li>
+                            <li>o gradiente ∇f(x,y).</li>
+                        </ol>
+                    </li>
 
-<section id="exercicios">
-  <h2 class="section-title">7. Exercícios para fixação</h2>
+                    <li>
+                        Dada a função vetorial $ F(x,y) = (x^2 + y,\; x y) $
+                        calcule o Jacobiano.
+                    </li>
+                    <li>
+                        Dada a função $ f(x,y) = x^3 + y^3 - 3xy $, calcule a
+                        Hessiana e discuta se há pontos de máximo, mínimo ou
+                        sela.
+                    </li>
 
-  <ol class="exercicios">
-    <li>
-      Crie variáveis simbólicas <code>x</code> e <code>y</code>, monte a expressão abaixo e simplifique-a usando comandos do Octave.
-      $$ f(x,y) = x^2 + 2xy + y^2 $$  
+                    <li>
+                        Resolva as integrais abaixo:
+                        <ol class="alpha">
+                            <li>$ \int e^{2x}\,dx $</li>
+                            <li>$ \int_0^1 (x^2+1)\,dx $</li>
+                            <li>
+                                $ \iint_D (x+y)\,dx\,dy $ sobre o quadrado $0
+                                \leq x,y \leq 1 $.
+                            </li>
+                        </ol>
+                    </li>
 
-    </li>
-    <br>
-    <li> 
-      Encontre a solução das equações abaixo e plot cada uma delas em um intervalo que se encontra a solução
-      <ol class="alpha">
-        <li>  $ x^2 - 4x + 3 = 0 $</li>
-        <li>$ \sin(x) = \frac{1}{2} x $</li>
-        <li>$ e^x - 2x = 1 $</li>
-      </ol>
+                    <li>
+                        Calcule $$ \int_1^{\infty} \frac{1}{x^2}\,dx $$ e
+                        verifique se o resultado converge.
+                    </li>
 
-    </li>
-<br>
-    <li>
-      Seja $ f(x,y) = x^2y + e^x \sin(y) $, utilize o Octave determinar:  
-      <ol class="alpha">
-        <li>a derivada parcial em relação a <code>x</code>;</li>
-        <li>a derivada parcial em relação a <code>y</code>;</li>
-        <li>o gradiente ∇f(x,y).</li>
-      </ol>
-    </li>
+                    <li>Resolva a EDO $$ y'(x) + y(x) = e^{-x} $$</li>
 
-    <li>
-      Dada a função vetorial  $ F(x,y) = (x^2 + y,\; x y) $ calcule o Jacobiano.  
-    </li>
-    <li> Dada a função $ f(x,y) = x^3 + y^3 - 3xy $, calcule a Hessiana e discuta se há pontos de máximo, mínimo ou sela.
-    </li>
+                    <li>
+                        Calcule a Transformada de Laplace de $$ f(t) = \cos(2t)
+                        $$.
+                    </li>
+                    <li>
+                        Calcule a Transformada de Fourier de $$ f(t) = e^{-t^2}
+                        $$.
+                    </li>
+                    <li>Calcule a Transformada Z de $$ x[n] = (1/3)^n $$.</li>
+                </ol>
 
-    <li>
-      Resolva as integrais abaixo: 
-      <ol class="alpha">
-        <li> $ \int e^{2x}\,dx $</li>
-        <li> $ \int_0^1 (x^2+1)\,dx $</li>
-        <li> $ \iint_D (x+y)\,dx\,dy $ sobre o quadrado $0 \leq x,y \leq 1 $.</li>
-      </ol>
-    </li>
-
-    <li>  
-      Calcule $$ \int_1^{\infty} \frac{1}{x^2}\,dx $$ e verifique se o resultado converge.
-    </li>
-
-    <li>
-      Resolva a EDO  
-      $$ y'(x) + y(x) = e^{-x} $$  
-    </li>
-
-    <li>Calcule a Transformada de Laplace de $$ f(t) = \cos(2t) $$.</li>
-        <li>Calcule a Transformada de Fourier de $$ f(t) = e^{-t^2} $$.</li>
-        <li>Calcule a Transformada Z de $$ x[n] = (1/3)^n $$.</li>
-
-  </ol>
-
-  <p><em>Dica:</em> Alguns exercícios podem não ser resolvidos apenas com o pacote <code>symbolic</code>.  
-  Aproveite para explorar a documentação oficial e fóruns de usuários do Octave.</p>
-</section>
+                <p>
+                    <em>Dica:</em> Alguns exercícios podem não ser resolvidos
+                    apenas com o pacote <code>symbolic</code>. Aproveite para
+                    explorar a documentação oficial e fóruns de usuários do
+                    Octave.
+                </p>
+            </section>
         </main>
         <script src="funcoes.js"></script>
     </body>
 </html>
-
-
